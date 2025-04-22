@@ -1,12 +1,9 @@
-import java.util.Collections;
+
 import java.util.ListIterator;
 
-public class InsertionSort {
+public class InsertionSortTimer {
   
-  public static CardPile sort(CardPile unsorted, SortRecorder record) {
-    
-    // register the starting configuration with the recorder
-    record.add(unsorted);
+  public static CardPile sort(CardPile unsorted) {
 
     // Here is the result list you will be creating
     CardPile sorted = new CardPile();
@@ -35,33 +32,25 @@ public class InsertionSort {
 
       //remove sorted card from unsorted
       unsorted.remove(toSort);
-      
-      record.next();        // tell recorder this is a new step
-      record.add(sorted);   // add sorted pile
-      record.add(unsorted); // add unsorted pile
     }
     // return the sorted result here
     return sorted;
   }
-public static void main(String args[]) {
+  /** Starts the program running */
+  public static void main(String args[]) {
+    
+    if (args.length<1) {
+      System.err.println("Please specify how many cards to sort!");
+    } else {
+      Card[] deck = Card.newDeck(true);
+      CardPile cards = new CardPile();
+      
+      for (int i = 0; i<Integer.parseInt(args[0]); i++ ) {
+        cards.add(deck[(int)(52*Math.random())]);
+      }
 
-    // set up a class to record and display the sorting results
-    SortRecorder recorder = new SortRecorder();
-
-    // set up the deck of cards
-    Card.loadImages(recorder);
-    CardPile cards = new CardPile(Card.newDeck(true), 2, 2);
-
-    // mix up the cards
-    Collections.shuffle(cards);
-
-    //call sorting method
-    cards = InsertionSort.sort(cards, recorder);
-
-    //print out the sorted result:
-    System.out.println(cards);
-
-    // make window appear showing the record
-    recorder.display("Card Sort Demo: InsertionSort");
+      sort(cards);
+      
+    }
   }
 }

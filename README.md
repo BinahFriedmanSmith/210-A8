@@ -13,4 +13,6 @@ Any references used besides JavaDoc and course materials:
 
 What did you notice about the differences in runtime across algorithms as you changed the number of cards you were sorting? If you had to split them into "slower" algorithms vs "faster" algorithms, which would you put in each category?
 
+    I found that selection and insertion sort's times scaled much more rapidly, making them slower than merge and quicksort, especially at high numbers of cards.
+
 Please reflect on your experience with this assignment. What was most challenging? What was most interesting?
